@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E3E4D0B7-656C-6C50-7567-696E2E57696E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>EnemyHPBar</RootNamespace>
+    <AssemblyName>EnemyHPBar</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>
+    </NoWarn>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <LangVersion>6</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
+    <OutputPath>bin\Debug\</OutputPath>
+    <IntermediateOutputPath>obj\Windows\AnyCPU\Debug</IntermediateOutputPath>
+    <DocumentationFile>bin\Debug\EnemyHPBar.xml</DocumentationFile>
+    <DefineConstants>DEBUG;PLATFORM_WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>default</LangVersion>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <OutputPath>bin\Windows\AnyCPU\Release</OutputPath>
+    <IntermediateOutputPath>obj\Windows\AnyCPU\Release</IntermediateOutputPath>
+    <DocumentationFile>bin\Windows\AnyCPU\Release\EnemyHPBar.xml</DocumentationFile>
+    <DefineConstants>PLATFORM_WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\Modding.API_1.3.1.1_beta\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMaker">
+      <HintPath>..\..\HollowKnight.Modding-master\Vanilla\PlayMaker.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\HollowKnight.Modding-master\Vanilla\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\HollowKnight.Modding-master\Vanilla\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceLoader.cs" />
+    <Compile Include="ComponentHPBar.cs" />
+    <Compile Include="HPBar.cs" />
+    <Compile Include="HPBarComponent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg" />
+    <None Include="Resources\fg" />
+    <None Include="Resources\outline" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\enemyhpbaraltfinalfilling.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\enemyhpbarfinalempty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fg.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <_PostBuildHookTimestamp>@(IntermediateAssembly->'%(FullPath).timestamp')</_PostBuildHookTimestamp>
+    <_PostBuildHookHostPlatform>$(Platform)</_PostBuildHookHostPlatform>
+  </PropertyGroup>
+  <Target Name="PostBuildHooks" Inputs="@(IntermediateAssembly);@(ReferencePath)" Outputs="@(IntermediateAssembly);$(_PostBuildHookTimestamp)" AfterTargets="CoreCompile" BeforeTargets="AfterCompile">
+    <Touch Files="$(_PostBuildHookTimestamp)" AlwaysCreate="True" />
+  </Target>
+  <ItemGroup />
+</Project>
