@@ -18,8 +18,10 @@ namespace EnemyHPBar
 
         private static string version = "0.0.1";
 
-        public static Dictionary<string, int[]> enemies;
+        public static Dictionary<string, int[]> healths;
         public static Dictionary<string, ComponentHPBar> hpbars;
+        public static Dictionary<string, GameObject> enemies;
+        public static List<string> dedList;
         public static PlayMakerFSM enemyFSM;
 
         public override string GetVersion()
@@ -32,7 +34,7 @@ namespace EnemyHPBar
             Log("Initializing EnemyHPBars");
 
             ModHooks.Instance.OnGetEventSenderHook += Instance_OnGetEventSenderHook;
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += checkComponent;
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += ClearingLists;
             ModHooks.Instance.HeroUpdateHook += Instance_HeroUpdateHook;
             //ModHooks.Instance.SlashHitHook += Instance_SlashHitHook;
 
@@ -40,52 +42,75 @@ namespace EnemyHPBar
             Log("Initialized EnemyHPBars");
         }
 
+        public GameObject[] FindGameObjectsByName(string name)
+        {
+            return Array.FindAll((UnityEngine.Object.FindObjectsOfType(typeof(GameObject)) as GameObject[]), p => p.name == name);
+        }
+
         private void Instance_HeroUpdateHook()
         {
-            foreach (KeyValuePair<string, ComponentHPBar> hpbar in hpbars)
+
+            foreach (KeyValuePair<string, GameObject> ob in enemies)
             {
-                if (GameObject.Find(hpbar.Key) == null || !GameObject.Find(hpbar.Key).activeSelf)
+                GameObject go = ob.Value;
+                if (go == null || !go.activeSelf || !go.activeInHierarchy)
                 {
+                    Log($@"Cleaning up after {ob.Key}");
                     EventInfo ei = ModHooks.Instance.GetType().GetEvent("OnGetEventSenderHook", BindingFlags.Instance | BindingFlags.Public);
                     if (ei != null)
                     {
-                        Delegate handler = Delegate.CreateDelegate(ei.EventHandlerType, hpbar.Value, "Instance_OnGetEventSenderHook");
+                        Delegate handler = Delegate.CreateDelegate(ei.EventHandlerType, hpbars[ob.Key], "Instance_OnGetEventSenderHook");
                         ei.RemoveEventHandler(ModHooks.Instance, handler);
                     }
-                    UnityEngine.Object.Destroy(hpbar.Value);
+                    try
+                    {
+                        hpbars[ob.Key].canvasGroup.alpha = 0;
+                    }
+                    catch
+                    {
+                        Log("Error while cleaning canvas");
+                    }
+                    UnityEngine.Object.Destroy(hpbars[ob.Key]);
+                    dedList.Add(ob.Key);
                 }
             }
+            foreach (string enemy in dedList)
+            {
+                healths.Remove(enemy);
+                hpbars.Remove(enemy);
+                enemies.Remove(enemy);
+
+                Log($@"Finished cleaning up after {enemy}");
+            }
+            if (dedList != new List<string>())
+            dedList = new List<string>();
         }
 
-        public void checkComponent(Scene s, LoadSceneMode lsm)
+        public void ClearingLists(Scene s, LoadSceneMode lsm)
         {
-            enemies = new Dictionary<string, int[]> ();
+            healths = new Dictionary<string, int[]> ();
             hpbars = new Dictionary<string, ComponentHPBar>();
-            //foreach (GameObject go in GameObject.FindObjectsOfType<GameObject>())
-            //{
-            //    PlayMakerFSM hme = FSMUtility.LocateFSM(go, "health_manager_enemy");
-            //    PlayMakerFSM hm = FSMUtility.LocateFSM(go, "health_manager");
-            //    if ( !Equals(hm, null) || !Equals(hme, null) )
-            //    {
-            //        enemies.Add(go.name, -1);
-            //        go.AddComponent<ComponentHPBar>();
-            //    }
-            //}
-            //Log($@"Enemies: {String.Join(",\n", enemies.Keys.ToArray())}");
+            enemies = new Dictionary<string, GameObject>();
+            dedList = new List<string>();
         }
 
         GameObject Instance_OnGetEventSenderHook(GameObject go, HutongGames.PlayMaker.Fsm fsm)
         {
-
             PlayMakerFSM hm = FSMUtility.LocateFSM(fsm.GameObject, "health_manager") ?? FSMUtility.LocateFSM(fsm.GameObject, "health_manager_enemy");
+
             if (!Equals(hm, null) && Equals(fsm.GameObject.GetComponent<ComponentHPBar>(), null))
             {
                 ComponentHPBar hp = fsm.GameObject.AddComponent<ComponentHPBar>();
-                enemies.Add(fsm.GameObjectName, new int[2] { hm.FsmVariables.GetFsmInt("HP").Value, -1 });
-                hpbars.Add(fsm.GameObjectName, hp);
+
+                healths.Add(fsm.GameObjectName, new int[2] { hm.FsmVariables.GetFsmInt("HP").Value, -1});
+                enemies.Add(fsm.GameObjectName, fsm.GameObject);
+                hpbars.Add(fsm.GameObject.name, hp);
+                
                 hp.Instance_OnGetEventSenderHook(go, fsm);
-                Log($@"Enemies: {String.Join(",\n", enemies.Keys.ToArray())}");
+
+                Log($@"Enemies: {String.Join(",\n", healths.Keys.ToArray())}");
             }
+
             return go;
         }
     }
