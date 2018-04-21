@@ -43,8 +43,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\Modding.API_1.3.1.1_beta\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ModdingAPI_1.3.1.5_beta\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="PlayMaker">
       <HintPath>..\..\HollowKnight.Modding-master\Vanilla\PlayMaker.dll</HintPath>
@@ -74,7 +75,6 @@
     <Compile Include="ResourceLoader.cs" />
     <Compile Include="ComponentHPBar.cs" />
     <Compile Include="HPBar.cs" />
-    <Compile Include="HPBarComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -86,19 +86,15 @@
   <ItemGroup>
     <None Include="Resources\bg" />
     <None Include="Resources\fg" />
+    <None Include="Resources\mg" />
     <None Include="Resources\outline" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bg.png" />
+    <None Include="Resources\outline2" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\enemyhpbaraltfinalfilling.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\enemyhpbarfinalempty.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\fg.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />

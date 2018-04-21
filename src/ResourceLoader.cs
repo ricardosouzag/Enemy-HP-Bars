@@ -21,6 +21,11 @@ namespace EnemyHPBar
             return Properties.Resources.fg;
         }
 
+        public static byte[] GetMiddlegroundImage()
+        {
+            return Properties.Resources.mg;
+        }
+
         public static byte[] GetOutlineImage()
         {
             return Properties.Resources.outline;

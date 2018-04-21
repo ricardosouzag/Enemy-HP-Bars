@@ -83,6 +83,16 @@ namespace EnemyHPBar.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] mg {
+            get {
+                object obj = ResourceManager.GetObject("mg", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] outline {
             get {
                 object obj = ResourceManager.GetObject("outline", resourceCulture);

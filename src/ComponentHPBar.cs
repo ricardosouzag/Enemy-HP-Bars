@@ -10,23 +10,27 @@ namespace EnemyHPBar
     public partial class ComponentHPBar : MonoBehaviour
     {
         public Sprite bg;
-        public  Sprite fg;
-        public  Sprite ol;
+        public Sprite mg;
+        public Sprite fg;
+        public Sprite ol;
 
         private  GameObject canvas;
         private  GameObject bg_go;
+        private  GameObject mg_go;
         private  GameObject fg_go;
         private  GameObject ol_go;
 
         public RectTransform canvasRect;
-        public  CanvasGroup canvasGroup;
-        public  Image health_bar;
+        public CanvasGroup canvasGroup;
+        public Image health_bar;
+        public Image hpbg;
         
-        public int maxHP;
+        public float currHP;
+        public float maxHP;
         public bool dead;
 
         public PlayMakerFSM enemyFSM;
-        public PlayMakerFSM hm;
+        public HealthManager hm;
 
         public Vector2 uiOffset;
         public Vector2 viewportPosition;
@@ -38,19 +42,18 @@ namespace EnemyHPBar
         {
             Modding.Logger.Log($@"Creating canvas for {gameObject.name}");
 
-            ModHooks.Instance.OnGetEventSenderHook += Instance_OnGetEventSenderHook;
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+            bg = CanvasUtil.CreateSprite(ResourceLoader.GetBackgroundImage(), 0, 0, 175, 19);
+            mg = CanvasUtil.CreateSprite(ResourceLoader.GetMiddlegroundImage(), 0, 0, 117, 10);
+            fg = CanvasUtil.CreateSprite(ResourceLoader.GetForegroundImage(), 0, 0, 117, 10);
+            ol = CanvasUtil.CreateSprite(ResourceLoader.GetOutlineImage(), 0, 0, 175, 19);
 
-            collider = gameObject.GetComponent<BoxCollider2D>();
-
-            bg = CanvasUtil.CreateSprite(ResourceLoader.GetBackgroundImage(), 0, 0, 125, 33);
-            fg = CanvasUtil.CreateSprite(ResourceLoader.GetForegroundImage(), 0, 0, 125, 33);
-
-            canvas = CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(1280, 720));
+            canvas = CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(Screen.width, Screen.height));
             canvasGroup = canvas.GetComponent<CanvasGroup>();
 
-            bg_go = CanvasUtil.CreateImagePanel(canvas, bg, new CanvasUtil.RectData(new Vector2(125, 33), new Vector2(0, 32), new Vector2(0.5f, 0), new Vector2(0.5f, 0)));
-            fg_go = CanvasUtil.CreateImagePanel(canvas, fg, new CanvasUtil.RectData(new Vector2(125, 33), new Vector2(0, 32), new Vector2(0.5f, 0), new Vector2(0.5f, 0)));
+            bg_go = CanvasUtil.CreateImagePanel(canvas, bg, new CanvasUtil.RectData(new Vector2(175, 19), new Vector2(0, 32)));
+            mg_go = CanvasUtil.CreateImagePanel(canvas, mg, new CanvasUtil.RectData(new Vector2(117, 10), new Vector2(0, 32)));
+            fg_go = CanvasUtil.CreateImagePanel(canvas, fg, new CanvasUtil.RectData(new Vector2(117, 10), new Vector2(0, 32)));
+            ol_go = CanvasUtil.CreateImagePanel(canvas, ol, new CanvasUtil.RectData(new Vector2(175, 19), new Vector2(0, 32)));
 
             health_bar = fg_go.GetComponent<Image>();
 
@@ -58,7 +61,15 @@ namespace EnemyHPBar
             health_bar.fillMethod = Image.FillMethod.Horizontal;
             health_bar.preserveAspect = false;
 
+
+            hpbg = mg_go.GetComponent<Image>();
+
+            hpbg.type = Image.Type.Filled;
+            hpbg.fillMethod = Image.FillMethod.Horizontal;
+            hpbg.preserveAspect = false;
+
             bg_go.GetComponent<Image>().preserveAspect = false;
+            ol_go.GetComponent<Image>().preserveAspect = false;
 
             MonoBehaviour.DontDestroyOnLoad(canvas);
 
@@ -67,57 +78,56 @@ namespace EnemyHPBar
             
             objectPos = new Vector2(((viewportPosition.x * canvasRect.sizeDelta.x)),((viewportPosition.y * canvasRect.sizeDelta.y)));
 
-            hm = FSMUtility.LocateFSM(gameObject, "health_manager") ?? FSMUtility.LocateFSM(gameObject, "health_manager_enemy");
+            hm = gameObject.GetComponent<HealthManager>();
+
+            canvasGroup.alpha = 0;
+            maxHP = EnemyHPBar.healths[gameObject];
+            currHP = hm.hp;
         }
 
-        private void SceneManager_sceneLoaded(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.LoadSceneMode arg1)
+
+        void OnDestroy()
         {
-            ModHooks.Instance.OnGetEventSenderHook -= Instance_OnGetEventSenderHook;
+            Modding.Logger.Log($@"Destroying enemy {gameObject.name}");
             canvasGroup.alpha = 0;
             Destroy(this);
+            Modding.Logger.Log($@"Destroyed enemy {gameObject.name}");
         }
 
-        public GameObject Instance_OnGetEventSenderHook(GameObject go, HutongGames.PlayMaker.Fsm fsm)
-        {
+        void OnDisable()
+        {       
+            Modding.Logger.Log($@"Disabling enemy {gameObject.name}");
+            canvasGroup.alpha = 0;
+            Destroy(this);
+            Modding.Logger.Log($@"Disabled enemy {gameObject.name}");
+        }
 
-            enemyFSM = fsm.FsmComponent;
-            if (fsm.GameObject.name == gameObject.name)
+        void FixedUpdate()
+        {
+            if (currHP > hm.hp)
             {
-                try
-                {
-                    Modding.Logger.Log($@"{fsm.GameObjectName}'s HP before hit = {hm.FsmVariables.GetFsmInt("HP").Value}");
-
-                    if (GameManager.instance.sceneName == "Room_Final_Boss_Core")
-                    {
-                        fsm.GameObject.name = "THK";
-                    }
-
-                    Modding.Logger.Log($@"Fill Amount - {(float)hm.FsmVariables.GetFsmInt("HP").Value / EnemyHPBar.healths[gameObject.name][0]}");
-                    health_bar.fillAmount = (float)hm.FsmVariables.GetFsmInt("HP").Value / EnemyHPBar.healths[gameObject.name][0];
-
-                    canvasGroup.alpha = 1;
-                }
-                catch
-                {
-                    Modding.Logger.Log($@"Error while running OnGetEventSenderHook for enemy {fsm.GameObject.name}");
-                }        
+                currHP -= 0.5f;
             }
-            return go;
+            else
+            {
+                currHP = hm.hp;
+            }
+            health_bar.fillAmount = hm.hp / maxHP;
+            hpbg.fillAmount = currHP / maxHP;
+            if (health_bar.fillAmount != 1)
+            {
+                canvasGroup.alpha = 1;
+            }
         }
 
-        void Update()
+        void LateUpdate()
         {
-            if (HeroController.instance.cState.dead)
-                canvasGroup.alpha = 0;
-            if (!EnemyHPBar.healths.ContainsKey(gameObject.name))
-                canvasGroup.alpha = 0;
-
-            health_bar.fillAmount = (float)hm.FsmVariables.GetFsmInt("HP").Value / EnemyHPBar.healths[gameObject.name][0];
-
-            viewportPosition = Camera.main.WorldToViewportPoint(collider.transform.position);
+            viewportPosition = Camera.main.WorldToViewportPoint(gameObject.transform.position);
             objectPos = new Vector2(viewportPosition.x * canvasRect.sizeDelta.x, (viewportPosition.y + 0.15f) * canvasRect.sizeDelta.y);
             fg_go.transform.position = objectPos;
+            mg_go.transform.position = objectPos;
             bg_go.transform.position = objectPos;
+            ol_go.transform.position = objectPos;
         }
     }
 }

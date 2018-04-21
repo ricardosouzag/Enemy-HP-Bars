@@ -1,0 +1,11 @@
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\bin\Windows\AnyCPU\Release\EnemyHPBar.xml
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\bin\Windows\AnyCPU\Release\EnemyHPBar.dll
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\bin\Windows\AnyCPU\Release\Assembly-CSharp.dll
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\bin\Windows\AnyCPU\Release\PlayMaker.dll
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\bin\Windows\AnyCPU\Release\UnityEngine.UI.dll
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\bin\Windows\AnyCPU\Release\Assembly-CSharp.xml
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\HPBar.csprojResolveAssemblyReference.cache
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\EnemyHPBar.Properties.Resources.resources
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\HPBar.csproj.GenerateResource.Cache
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\HPBar.csproj.CoreCompileInputs.cache
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\EnemyHPBar.dll
