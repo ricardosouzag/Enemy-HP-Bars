@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
 using Modding;
-using GlobalEnums;
 using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine.UI;
-using System.Reflection;
 using UnityEngine.SceneManagement;
 
 namespace EnemyHPBar
@@ -16,11 +10,7 @@ namespace EnemyHPBar
     public class EnemyHPBar : Mod
     {
 
-        private static string version = "0.1.0";
-
-        public static Dictionary<GameObject, int> healths;
-        public static Dictionary<GameObject, ComponentHPBar> hpbars;
-        public static Dictionary<GameObject, string> enemies;
+        private static string version = "0.3.0";
 
         public override string GetVersion()
         {
@@ -30,35 +20,53 @@ namespace EnemyHPBar
         public override void Initialize()
         {
             Log("Initializing EnemyHPBars");
-            
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += ClearingLists;
-            ModHooks.Instance.HeroUpdateHook += Instance_HeroUpdateHook;
+
+            ModHooks.Instance.OnEnableEnemyHook += Instance_OnEnableEnemyHook;
+            ModHooks.Instance.OnRecieveDeathEventHook += Instance_OnRecieveDeathEventHook;
 
 
             Log("Initialized EnemyHPBars");
         }
 
 
-        private void Instance_HeroUpdateHook()
+        private bool Instance_OnRecieveDeathEventHook(EnemyDeathEffects enemyDeathEffects, bool eventAlreadyRecieved, ref float? attackDirection, ref bool resetDeathEvent, ref bool spellBurn, ref bool isWatery)
         {
-            foreach(HealthManager hm in GameObject.FindObjectsOfType<HealthManager>())
+            LogDebug($@"Enemy {enemyDeathEffects.gameObject.name} ded");
+            if (enemyDeathEffects.gameObject.GetComponent<HPBar>().oldHP == 0)
             {
-                if (!healths.Keys.Any(f => f == hm.gameObject) && hm.hp < 5000 && hm != null)
-                {
-                    healths.Add(hm.gameObject, hm.hp);
-                    enemies.Add(hm.gameObject, hm.gameObject.name);
-                    ComponentHPBar hpbar = hm.gameObject.AddComponent<ComponentHPBar>();
-                    hpbars.Add(hm.gameObject, hpbar);
-                    Log($@"Enemies: {String.Join(",\n", enemies.Values.ToArray())}");
-                }
+                GameObject placeHolder = new GameObject();
+                placeHolder.transform.position = enemyDeathEffects.gameObject.transform.position;
+                HealthManager phhm = placeHolder.AddComponent<HealthManager>();
+                HPBar phhp = placeHolder.AddComponent<HPBar>();
+                phhp.currHP = 30;
+                phhp.maxHP = 30;
+                phhm.hp = 0;
             }
+            else
+            {
+
+                GameObject placeHolder = new GameObject();
+                placeHolder.transform.position = enemyDeathEffects.gameObject.transform.position;
+                HealthManager phhm = placeHolder.AddComponent<HealthManager>();
+                HPBar phhp = placeHolder.AddComponent<HPBar>();
+                phhp.currHP = enemyDeathEffects.gameObject.GetComponent<HPBar>().oldHP;
+                phhp.maxHP = enemyDeathEffects.gameObject.GetComponent<HPBar>().maxHP;
+                phhm.hp = 0;
+            }
+
+            return eventAlreadyRecieved;
         }
 
-        public void ClearingLists(Scene s, LoadSceneMode lsm)
+        private bool Instance_OnEnableEnemyHook(GameObject enemy, bool isAlreadyDead)
         {
-            healths = new Dictionary<GameObject, int> ();
-            hpbars = new Dictionary<GameObject, ComponentHPBar>();
-            enemies = new Dictionary<GameObject, string>();
-        }        
+            HealthManager hm = enemy.GetComponent<HealthManager>();
+            HPBar hpbar = hm.gameObject.GetComponent<HPBar>();
+            if (hpbar == null && hm.hp < 5000 && hm != null && !isAlreadyDead)
+            {
+                HPBar bar = hm.gameObject.AddComponent<HPBar>();
+                LogDebug($@"Added hp bar to {enemy.name}");
+            }
+            return isAlreadyDead;
+        }
     }
 }

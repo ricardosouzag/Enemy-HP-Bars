@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace EnemyHPBar
 {
-    public partial class ComponentHPBar : MonoBehaviour
+    public partial class HPBar : MonoBehaviour
     {
         public Sprite bg;
         public Sprite mg;
@@ -27,6 +27,7 @@ namespace EnemyHPBar
         
         public float currHP;
         public float maxHP;
+        public int oldHP;
         public bool dead;
 
         public PlayMakerFSM enemyFSM;
@@ -81,7 +82,7 @@ namespace EnemyHPBar
             hm = gameObject.GetComponent<HealthManager>();
 
             canvasGroup.alpha = 0;
-            maxHP = EnemyHPBar.healths[gameObject];
+            maxHP = hm.hp;
             currHP = hm.hp;
         }
 
@@ -118,6 +119,12 @@ namespace EnemyHPBar
             {
                 canvasGroup.alpha = 1;
             }
+            if (gameObject.name == "New Game Object" && currHP <= 0)
+            {
+                Modding.Logger.Log($@"Placeholder killed");
+                Destroy(gameObject);
+            }
+            oldHP = hm.hp;
         }
 
         void LateUpdate()

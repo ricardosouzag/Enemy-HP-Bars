@@ -41,11 +41,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ModdingAPI_1.3.1.5_beta\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\ModdingAPI_1.3.1.5_test2\hollow_knight_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="PlayMaker">
       <HintPath>..\..\HollowKnight.Modding-master\Vanilla\PlayMaker.dll</HintPath>
