@@ -28,7 +28,6 @@ namespace EnemyHPBar
             Log("Initialized EnemyHPBars");
         }
 
-
         private bool Instance_OnRecieveDeathEventHook(EnemyDeathEffects enemyDeathEffects, bool eventAlreadyRecieved, ref float? attackDirection, ref bool resetDeathEvent, ref bool spellBurn, ref bool isWatery)
         {
             LogDebug($@"Enemy {enemyDeathEffects.gameObject.name} ded");
@@ -44,7 +43,6 @@ namespace EnemyHPBar
             }
             else
             {
-
                 GameObject placeHolder = new GameObject();
                 placeHolder.transform.position = enemyDeathEffects.gameObject.transform.position;
                 HealthManager phhm = placeHolder.AddComponent<HealthManager>();

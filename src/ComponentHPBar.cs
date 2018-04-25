@@ -36,12 +36,13 @@ namespace EnemyHPBar
         public Vector2 uiOffset;
         public Vector2 viewportPosition;
         public Vector2 objectPos;
+        public Vector2 screenScale;
 
         public BoxCollider2D collider;
 
         public void Awake()
         {
-            Modding.Logger.Log($@"Creating canvas for {gameObject.name}");
+            Modding.Logger.LogDebug($@"Creating canvas for {gameObject.name}");
 
             bg = CanvasUtil.CreateSprite(ResourceLoader.GetBackgroundImage(), 0, 0, 175, 19);
             mg = CanvasUtil.CreateSprite(ResourceLoader.GetMiddlegroundImage(), 0, 0, 117, 10);
@@ -51,10 +52,12 @@ namespace EnemyHPBar
             canvas = CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(Screen.width, Screen.height));
             canvasGroup = canvas.GetComponent<CanvasGroup>();
 
-            bg_go = CanvasUtil.CreateImagePanel(canvas, bg, new CanvasUtil.RectData(new Vector2(175, 19), new Vector2(0, 32)));
-            mg_go = CanvasUtil.CreateImagePanel(canvas, mg, new CanvasUtil.RectData(new Vector2(117, 10), new Vector2(0, 32)));
-            fg_go = CanvasUtil.CreateImagePanel(canvas, fg, new CanvasUtil.RectData(new Vector2(117, 10), new Vector2(0, 32)));
-            ol_go = CanvasUtil.CreateImagePanel(canvas, ol, new CanvasUtil.RectData(new Vector2(175, 19), new Vector2(0, 32)));
+            screenScale = new Vector2(Screen.width / 1280f, Screen.height / 720f);
+
+            bg_go = CanvasUtil.CreateImagePanel(canvas, bg, new CanvasUtil.RectData(Vector2.Scale(new Vector2(175, 19), screenScale), new Vector2(0, 32)));
+            mg_go = CanvasUtil.CreateImagePanel(canvas, mg, new CanvasUtil.RectData(Vector2.Scale(new Vector2(117, 10), screenScale), new Vector2(0, 32)));
+            fg_go = CanvasUtil.CreateImagePanel(canvas, fg, new CanvasUtil.RectData(Vector2.Scale(new Vector2(117, 10), screenScale), new Vector2(0, 32)));
+            ol_go = CanvasUtil.CreateImagePanel(canvas, ol, new CanvasUtil.RectData(Vector2.Scale(new Vector2(175, 19), screenScale), new Vector2(0, 32)));
 
             health_bar = fg_go.GetComponent<Image>();
 
@@ -89,25 +92,25 @@ namespace EnemyHPBar
 
         void OnDestroy()
         {
-            Modding.Logger.Log($@"Destroying enemy {gameObject.name}");
+            Modding.Logger.LogDebug($@"Destroying enemy {gameObject.name}");
             canvasGroup.alpha = 0;
             Destroy(this);
-            Modding.Logger.Log($@"Destroyed enemy {gameObject.name}");
+            Modding.Logger.LogDebug($@"Destroyed enemy {gameObject.name}");
         }
 
         void OnDisable()
         {       
-            Modding.Logger.Log($@"Disabling enemy {gameObject.name}");
+            Modding.Logger.LogDebug($@"Disabling enemy {gameObject.name}");
             canvasGroup.alpha = 0;
             Destroy(this);
-            Modding.Logger.Log($@"Disabled enemy {gameObject.name}");
+            Modding.Logger.LogDebug($@"Disabled enemy {gameObject.name}");
         }
 
         void FixedUpdate()
         {
             if (currHP > hm.hp)
             {
-                currHP -= 0.5f;
+                currHP -= 0.3f;
             }
             else
             {
@@ -121,7 +124,7 @@ namespace EnemyHPBar
             }
             if (gameObject.name == "New Game Object" && currHP <= 0)
             {
-                Modding.Logger.Log($@"Placeholder killed");
+                Modding.Logger.LogDebug($@"Placeholder killed");
                 Destroy(gameObject);
             }
             oldHP = hm.hp;
