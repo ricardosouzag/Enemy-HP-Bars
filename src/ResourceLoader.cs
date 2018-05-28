@@ -30,5 +30,20 @@ namespace EnemyHPBar
         {
             return Properties.Resources.outline;
         }
+
+        public static byte[] GetBossBackgroundImage()
+        {
+            return Properties.Resources.bossbg;
+        }
+
+        public static byte[] GetBossForegroundImage()
+        {
+            return Properties.Resources.bossfg;
+        }
+
+        public static byte[] GetBossOutlineImage()
+        {
+            return Properties.Resources.bossoutline;
+        }
     }
 }

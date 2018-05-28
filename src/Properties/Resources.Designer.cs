@@ -73,6 +73,36 @@ namespace EnemyHPBar.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] bossbg {
+            get {
+                object obj = ResourceManager.GetObject("bossbg", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] bossfg {
+            get {
+                object obj = ResourceManager.GetObject("bossfg", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] bossoutline {
+            get {
+                object obj = ResourceManager.GetObject("bossoutline", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] fg {
             get {
                 object obj = ResourceManager.GetObject("fg", resourceCulture);

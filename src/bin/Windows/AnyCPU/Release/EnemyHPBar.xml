@@ -25,6 +25,21 @@
               Looks up a localized resource of type System.Byte[].
             </summary>
         </member>
+        <member name="P:EnemyHPBar.Properties.Resources.bossbg">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:EnemyHPBar.Properties.Resources.bossfg">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:EnemyHPBar.Properties.Resources.bossoutline">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
         <member name="P:EnemyHPBar.Properties.Resources.fg">
             <summary>
               Looks up a localized resource of type System.Byte[].

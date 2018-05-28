@@ -8,4 +8,6 @@ C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Rele
 C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\HPBar.csproj.GenerateResource.Cache
 C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\HPBar.csproj.CoreCompileInputs.cache
 C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\EnemyHPBar.dll
-C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\HPBar.csprojResolveAssemblyReference.cache
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\HPBar.csproj.CopyComplete
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\obj\Windows\AnyCPU\Release\HPBar.csprojAssemblyReference.cache
+C:\Users\ayugr\Downloads\HK MODDING\DLLS\enemyhpbars\src\bin\Windows\AnyCPU\Release\ModCommon.dll

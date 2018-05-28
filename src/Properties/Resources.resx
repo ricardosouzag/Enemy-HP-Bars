@@ -121,6 +121,15 @@
   <data name="bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bg;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="bossbg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bossbg;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="bossfg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bossfg;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="bossoutline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bossoutline;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="fg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fg;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
