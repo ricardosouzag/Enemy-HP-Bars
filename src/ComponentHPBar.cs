@@ -1,11 +1,6 @@
 ﻿using Modding;
-using System;
-using System.Collections;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using EnemyHPBar;
-using GlobalEnums;
 
 namespace EnemyHPBar
 {
@@ -40,10 +35,10 @@ namespace EnemyHPBar
 
         public void Awake()
         {
-            Modding.Logger.LogDebug($@"Creating canvas for {gameObject.name}");
+            Modding.Logger.Log($@"Creating canvas for {gameObject.name}");
 
             On.CameraController.FadeOut += CameraController_FadeOut;
-            
+
             bg = CanvasUtil.CreateSprite(ResourceLoader.GetBackgroundImage(), 0, 0, 175, 19);
             mg = CanvasUtil.CreateSprite(ResourceLoader.GetMiddlegroundImage(), 0, 0, 117, 10);
             fg = CanvasUtil.CreateSprite(ResourceLoader.GetForegroundImage(), 0, 0, 117, 10);
@@ -63,7 +58,6 @@ namespace EnemyHPBar
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(117, 10), screenScale), new Vector2(0, 32)));
             ol_go = CanvasUtil.CreateImagePanel(canvas, ol,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(175, 19), screenScale), new Vector2(0, 32)));
-
 
             hpbg = mg_go.GetComponent<Image>();
             hpbg.type = Image.Type.Filled;
@@ -113,7 +107,7 @@ namespace EnemyHPBar
         {
             if (currHP > hm.hp)
             {
-                currHP -= 0.3f;
+                currHP -= 0.5f;
             }
             else
             {
