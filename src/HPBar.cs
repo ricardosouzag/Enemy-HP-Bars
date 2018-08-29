@@ -9,8 +9,7 @@ namespace EnemyHPBar
 {
     public class EnemyHPBar : Mod
     {
-
-        private static string version = "1.1.3";
+        private const string version = "1.2.0";
 
         public override string GetVersion()
         {
@@ -68,25 +67,28 @@ namespace EnemyHPBar
         {
             HealthManager hm = enemy.GetComponent<HealthManager>();
             EnemyDeathEffects ede = enemy.GetComponent<EnemyDeathEffects>();
-            EnemyDeathTypes deathType = (EnemyDeathTypes)ede.GetType().GetField("enemyDeathType", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(ede);
+            EnemyDeathTypes deathType = (EnemyDeathTypes) ede?.GetType()
+                .GetField("enemyDeathType", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(ede);
 
-            if (hm.hp < 200 && deathType != EnemyDeathTypes.LargeInfected)
+            bool isBoss = hm?.hp >= 200 || deathType == EnemyDeathTypes.LargeInfected;
+
+            if (!isBoss)
             {
-                HPBar hpbar = hm.gameObject.GetComponent<HPBar>();
-                if (hpbar != null || hm.hp >= 5000 || hm == null || isAlreadyDead) return isAlreadyDead;
-                hm.gameObject.AddComponent<HPBar>();
+                HPBar hpbar = hm?.gameObject.GetComponent<HPBar>();
+                if (hpbar != null || hm?.hp >= 5000 || isAlreadyDead) return isAlreadyDead;
+                hm?.gameObject.AddComponent<HPBar>();
                 Log($@"Added hp bar to {enemy.name}");
             }
             else
             {
-                BossHPBar bossHpBar = hm.gameObject.GetComponent<BossHPBar>();
-                if (bossHpBar != null || hm.hp >= 5000 || hm == null || isAlreadyDead) return isAlreadyDead;
-                hm.gameObject.AddComponent<BossHPBar>();
+                BossHPBar bossHpBar = hm?.gameObject.GetComponent<BossHPBar>();
+                if (bossHpBar != null || hm?.hp >= 5000 || isAlreadyDead) return isAlreadyDead;
+                hm?.gameObject.AddComponent<BossHPBar>();
                 activeBosses.Add(enemy.name);
                 Log($@"Added hp bar to boss {enemy.name}");
             }
 
-            return isAlreadyDead;
+            return false;
         }
         public static List<string> activeBosses;
     }
