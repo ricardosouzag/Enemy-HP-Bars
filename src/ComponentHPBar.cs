@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// ReSharper disable InconsistentNaming
 namespace EnemyHPBar
 {
     public class HPBar : MonoBehaviour

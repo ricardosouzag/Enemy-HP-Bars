@@ -1,11 +1,4 @@
 ﻿using EnemyHPBar.Properties;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using Modding;
-using System.IO;
 
 namespace EnemyHPBar
 {
@@ -13,37 +6,37 @@ namespace EnemyHPBar
     {
         public static byte[] GetBackgroundImage()
         {
-            return Properties.Resources.bg;
+            return Resources.bg;
         }
 
         public static byte[] GetForegroundImage()
         {
-            return Properties.Resources.fg;
+            return Resources.fg;
         }
 
         public static byte[] GetMiddlegroundImage()
         {
-            return Properties.Resources.mg;
+            return Resources.mg;
         }
 
         public static byte[] GetOutlineImage()
         {
-            return Properties.Resources.outline;
+            return Resources.outline;
         }
 
         public static byte[] GetBossBackgroundImage()
         {
-            return Properties.Resources.bossbg;
+            return Resources.bossbg;
         }
 
         public static byte[] GetBossForegroundImage()
         {
-            return Properties.Resources.bossfg;
+            return Resources.bossfg;
         }
 
         public static byte[] GetBossOutlineImage()
         {
-            return Properties.Resources.bossoutline;
+            return Resources.bossoutline;
         }
     }
 }

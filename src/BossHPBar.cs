@@ -80,7 +80,7 @@ namespace EnemyHPBar
             canvasGroup.alpha = 0;
             Destroy(this);
             Modding.Logger.LogDebug($@"Destroyed enemy {gameObject.name}");
-            EnemyHPBar.activeBosses.Remove(gameObject.name);
+            EnemyHPBar.ActiveBosses.Remove(gameObject.name);
         }
 
         void OnDisable()
@@ -93,7 +93,7 @@ namespace EnemyHPBar
 
         void FixedUpdate()
         {
-            position = EnemyHPBar.activeBosses.IndexOf(gameObject.name) + 1;
+            position = EnemyHPBar.ActiveBosses.IndexOf(gameObject.name) + 1;
             if (currHP > hm.hp)
             {
                 currHP -= 0.3f;
@@ -124,7 +124,7 @@ namespace EnemyHPBar
 
         void LateUpdate()
         {
-            position = EnemyHPBar.activeBosses.IndexOf(gameObject.name);
+            position = EnemyHPBar.ActiveBosses.IndexOf(gameObject.name);
             fg_go.transform.position = new Vector2(objectPos.x, objectPos.y + position * 30f);
             bg_go.transform.position = new Vector2(objectPos.x, objectPos.y + position * 30f);
             ol_go.transform.position = new Vector2(objectPos.x, objectPos.y + position * 30f);

@@ -1,266 +1,292 @@
-
-src/_ReSharper\.Caches/ReSharperPlatformVs1512_8a9f22ff\.HPBar\.00/Db/
-
-src/_ReSharper\.Caches/ReSharperPlatformVs1512_8a9f22ff\.HPBar\.00/CompletionStatistics/
-
-src/_ReSharper\.Caches/ReSharperPlatformVs1512_8a9f22ff\.HPBar\.00/ExternalFiles/
-
-src/_ReSharper\.Caches/ReSharperPlatformVs1512_8a9f22ff\.HPBar\.00/FileDependencies/
-
-src/_ReSharper\.Caches/ReSharperPlatformVs1512_8a9f22ff\.HPBar\.00/AnnotatedMembers/
-
-src/_ReSharper\.Caches/ReSharperPlatformVs1512_8a9f22ff\.HPBar\.00/
-
-src/obj/Windows/AnyCPU/Release/DesignTimeResolveAssemblyReferences\.cache
-
-src/obj/Windows/AnyCPU/Release/DesignTimeResolveAssemblyReferencesInput\.cache
-
-src/obj/Windows/AnyCPU/Release/EnemyHPBar\.dll
-
-src/obj/Windows/AnyCPU/Release/HPBar\.csproj\.CoreCompileInputs\.cache
-
-src/obj/Windows/AnyCPU/Release/HPBar\.csproj\.FileListAbsolute\.txt
-
-src/obj/Windows/AnyCPU/Release/HPBar\.csproj\.GenerateResource\.Cache
-
-src/obj/Windows/AnyCPU/Release/HPBar\.csprojAssemblyReference\.cache
-
-src/bin/Debug/Assembly-CSharp\.dll
-
-src/bin/Debug/Assembly-CSharp\.xml
-
-src/bin/Debug/EnemyHPBar\.pdb
-
-src/bin/Debug/PlayMaker\.dll
-
-src/bin/Debug/UnityEngine\.dll
-
-src/bin/Debug/UnityEngine\.UI\.dll
-
-src/bin/Windows/AnyCPU/Release/\[API\] Enemy Health Bars by Gradow\.zip
-
-src/bin/Windows/AnyCPU/Release/Assembly-CSharp-firstpass\.dll
-
-src/bin/Windows/AnyCPU/Release/Assembly-CSharp\.dll
-
-src/bin/Windows/AnyCPU/Release/Assembly-CSharp\.xml
-
-src/bin/Windows/AnyCPU/Release/ConditionalExpression\.dll
-
-src/bin/Windows/AnyCPU/Release/EnemyHPBar\.dll
-
-src/bin/Windows/AnyCPU/Release/GalaxyCSharp\.dll
-
-src/bin/Windows/AnyCPU/Release/hollow_knight_Data/managed/Mods/EnemyHPBar\.dll
-
-src/bin/Windows/AnyCPU/Release/ModCommon\.dll
-
-src/bin/Windows/AnyCPU/Release/Mono\.Security\.dll
-
-src/bin/Windows/AnyCPU/Release/Readme\.txt
-
-src/bin/Windows/AnyCPU/Release/SonyNP\.dll
-
-src/bin/Windows/AnyCPU/Release/SonyPS4SaveData\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.AccessibilityModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.AccessibilityModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.AIModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.AIModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.AnimationModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.AnimationModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ARModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ARModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.AssetBundleModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.AssetBundleModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.AudioModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.AudioModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ClothModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ClothModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ClusterInputModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ClusterInputModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ClusterRendererModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ClusterRendererModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.CoreModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.CoreModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.CrashReportingModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.CrashReportingModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.DirectorModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.DirectorModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.GameCenterModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.GameCenterModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.GridModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.GridModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ImageConversionModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ImageConversionModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.IMGUIModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.IMGUIModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.InputModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.InputModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.JSONSerializeModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.JSONSerializeModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.Networking\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ParticlesLegacyModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ParticlesLegacyModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ParticleSystemModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ParticleSystemModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.PerformanceReportingModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.PerformanceReportingModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.Physics2DModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.Physics2DModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.PhysicsModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.PhysicsModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ScreenCaptureModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.ScreenCaptureModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.SharedInternalsModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.SharedInternalsModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.SpatialTracking\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.SpriteMaskModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.SpriteMaskModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.SpriteShapeModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.SpriteShapeModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.StandardEvents\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.StyleSheetsModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.StyleSheetsModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.TerrainModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.TerrainModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.TerrainPhysicsModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.TerrainPhysicsModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.TextRenderingModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.TextRenderingModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.TilemapModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.TilemapModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.Timeline\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UI\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UIElementsModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UIElementsModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UIModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UIModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UNETModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UNETModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityAnalyticsModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityAnalyticsModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityConnectModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityConnectModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityWebRequestAudioModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityWebRequestAudioModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityWebRequestModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityWebRequestModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityWebRequestTextureModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityWebRequestTextureModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityWebRequestWWWModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.UnityWebRequestWWWModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.VehiclesModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.VehiclesModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.VideoModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.VideoModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.VRModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.VRModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.WebModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.WebModule\.xml
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.WindModule\.dll
-
-src/bin/Windows/AnyCPU/Release/UnityEngine\.WindModule\.xml
-
-src/bin/Windows/AnyCPU/Release/zlib\.net\.dll
-
-src/bin/Debug/EnemyHPBar\.xml
-
-src/bin/Windows/AnyCPU/Release/\[API\] Enemy Health Bars by Gradow\.zip
+# This was taken from seanpr96/GlassSoulMod
+
+## Ignore Visual Studio temporary files, build results, and
+## files generated by popular Visual Studio add-ons.
+##
+## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+src/obj
+src/bin
+
+# Visual Studio 2015 cache/options directory
+.vs/
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUNIT
+*.VisualState.xml
+TestResult.xml
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json
+
+*_i.c
+*_p.c
+*_i.h
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# Chutzpah Test files
+_Chutzpah*
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# TFS 2012 Local Workspace
+$tf/
+
+# Guidance Automation Toolkit
+*.gpState
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# JustCode is a .NET coding add-in
+.JustCode
+
+# TeamCity is a build add-in
+_TeamCity*
+
+# DotCover is a Code Coverage Tool
+*.dotCover
+
+# Visual Studio code coverage results
+*.coverage
+*.coveragexml
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# MightyMoose
+*.mm.*
+AutoTest.Net/
+
+# Web workbench (sass)
+.sass-cache/
+
+# Installshield output folder
+[Ee]xpress/
+
+# DocProject is a documentation generator add-in
+DocProject/buildhelp/
+DocProject/Help/*.HxT
+DocProject/Help/*.HxC
+DocProject/Help/*.hhc
+DocProject/Help/*.hhk
+DocProject/Help/*.hhp
+DocProject/Help/Html2
+DocProject/Help/html
+
+# Click-Once directory
+publish/
+
+# Publish Web Output
+*.[Pp]ublish.xml
+*.azurePubxml
+# TODO: Comment the next line if you want to checkin your web deploy settings
+# but database connection strings (with potential passwords) will be unencrypted
+*.pubxml
+*.publishproj
+
+# Microsoft Azure Web App publish settings. Comment the next line if you want to
+# checkin your Azure Web App publish settings, but sensitive information contained
+# in these scripts will be unencrypted
+PublishScripts/
+
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/packages/repositories.config
+# NuGet v3's project.json files produces more ignorable files
+*.nuget.props
+*.nuget.targets
+
+# Microsoft Azure Build Output
+csx/
+*.build.csdef
+
+# Microsoft Azure Emulator
+ecf/
+rcf/
+
+# Windows Store app package directories and files
+AppPackages/
+BundleArtifacts/
+Package.StoreAssociation.xml
+_pkginfo.txt
+
+# Visual Studio cache files
+# files ending in .cache can be ignored
+*.[Cc]ache
+# but keep track of directories ending in .cache
+!*.[Cc]ache/
+
+# Others
+ClientBin/
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+orleans.codegen.cs
+
+# Since there are multiple workflows, uncomment next line to ignore bower_components
+# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
+#bower_components/
+
+# RIA/Silverlight projects
+Generated_Code/
+
+# Backup & report files from converting an old project file
+# to a newer Visual Studio version. Backup files are not needed,
+# because we have git ;-)
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# Business Intelligence projects
+*.rdl.data
+*.bim.layout
+*.bim_*.settings
+
+# Microsoft Fakes
+FakesAssemblies/
+
+# GhostDoc plugin setting file
+*.GhostDoc.xml
+
+# Node.js Tools for Visual Studio
+.ntvs_analysis.dat
+node_modules/
+
+# Typescript v1 declaration files
+typings/
+
+# Visual Studio 6 build log
+*.plg
+
+# Visual Studio 6 workspace options file
+*.opt
+
+# Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
+*.vbw
+
+# Visual Studio LightSwitch build output
+**/*.HTMLClient/GeneratedArtifacts
+**/*.DesktopClient/GeneratedArtifacts
+**/*.DesktopClient/ModelManifest.xml
+**/*.Server/GeneratedArtifacts
+**/*.Server/ModelManifest.xml
+_Pvt_Extensions
+
+# Paket dependency manager
+.paket/paket.exe
+paket-files/
+
+# FAKE - F# Make
+.fake/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# CodeRush
+.cr/
+
+# Python Tools for Visual Studio (PTVS)
+__pycache__/
+*.pyc
+
+# Cake - Uncomment if you are using it
+# tools/**
+# !tools/packages.config
+
+# Telerik's JustMock configuration file
+*.jmconfig
+
+# BizTalk build output
+*.btp.cs
+*.btm.cs
+*.odx.cs
+*.xsd.cs
