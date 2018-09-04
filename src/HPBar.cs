@@ -8,7 +8,7 @@ namespace EnemyHPBar
 {
     public class EnemyHPBar : Mod
     {
-        private const string version = "1.2.0";
+        private const string version = "1.2.1";
 
         public override string GetVersion()
         {
@@ -74,6 +74,12 @@ namespace EnemyHPBar
                 : DEATH_FI?.GetValue(ede) as EnemyDeathTypes?;
 
             bool isBoss = hm.hp >= 200 || deathType == EnemyDeathTypes.LargeInfected;
+            
+            if (enemy.name.Contains("White Palace Fly"))
+            {
+                Log("lol you don't get a hp bar");
+                return false;
+            }
 
             if (!isBoss)
             {
