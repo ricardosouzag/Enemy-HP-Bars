@@ -57,9 +57,7 @@ namespace EnemyHPBar
 
             bg_go.GetComponent<Image>().preserveAspect = false;
             ol_go.GetComponent<Image>().preserveAspect = false;
-
-            DontDestroyOnLoad(canvas);
-
+            
             hm = gameObject.GetComponent<HealthManager>();
 
             canvasGroup.alpha = 0;
