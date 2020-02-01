@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using HutongGames.PlayMaker.Actions;
 using Modding;
@@ -9,11 +11,23 @@ namespace EnemyHPBar
 {
     public class EnemyHPBar : Mod
     {
-        private const string version = "1.3.0";
+        private const string version = "2.0.0";
 
         public static GameObject canvas;
         public static GameObject bossCanvas;
-        
+        private static GameObject spriteLoader;
+
+        public const string HPBAR_BG = "bg.png";
+        public const string HPBAR_FG = "fg.png";
+        public const string HPBAR_MG = "mg.png";
+        public const string HPBAR_OL = "ol.png";
+        public const string HPBAR_BOSSOL = "bossol.png";
+        public const string HPBAR_BOSSFG = "bossfg.png";
+        public const string HPBAR_BOSSBG = "bossbg.png";
+        public const string SPRITE_FOLDER = "CustomHPBar";
+
+        public static readonly string DATA_DIR = Path.GetFullPath(Application.dataPath + "/Managed/Mods/" + SPRITE_FOLDER);
+
         public static Sprite bg;
         public static Sprite mg;
         public static Sprite fg;
@@ -32,19 +46,39 @@ namespace EnemyHPBar
         {
             Log("Initializing EnemyHPBars");
 
+            if (!Directory.Exists(DATA_DIR))
+            {
+                Directory.CreateDirectory(DATA_DIR);
+            }
+
+            foreach (string res in Assembly.GetExecutingAssembly().GetManifestResourceNames().Where(t => t.EndsWith("png")))
+            {
+                string properRes = res.Replace("EnemyHPBar.Resources.", "");
+                string resPath = DATA_DIR + "/" + properRes;
+
+                if (File.Exists(resPath)) continue;
+                var file = File.Create(resPath);
+                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(res))
+                {
+                    byte[] sidwhy = new byte[stream.Length];
+                    stream.Read(sidwhy, 0, sidwhy.Length);
+                    file.Write(sidwhy,0,sidwhy.Length);
+                    file.Dispose();
+                }
+            }
+
+            LoadLoader();
+
             ModHooks.Instance.OnEnableEnemyHook += Instance_OnEnableEnemyHook;
             ModHooks.Instance.OnRecieveDeathEventHook += Instance_OnRecieveDeathEventHook;
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             
             
-
             canvas = CanvasUtil.CreateCanvas(RenderMode.WorldSpace, new Vector2(16f, 9f));
             bossCanvas = CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(1280f, 720f));
             canvas.GetComponent<Canvas>().sortingOrder = 1;
             bossCanvas.GetComponent<Canvas>().sortingOrder = 1;
             
-            
-
             bg = CanvasUtil.CreateSprite(ResourceLoader.GetBackgroundImage(), 0, 0, 175, 19);
             mg = CanvasUtil.CreateSprite(ResourceLoader.GetMiddlegroundImage(), 0, 0, 117, 10);
             fg = CanvasUtil.CreateSprite(ResourceLoader.GetForegroundImage(), 0, 0, 117, 10);
@@ -57,6 +91,15 @@ namespace EnemyHPBar
             Object.DontDestroyOnLoad(bossCanvas);
 
             Log("Initialized EnemyHPBars");
+        }
+
+        public void LoadLoader()
+        {
+            if (spriteLoader == null)
+            {
+                spriteLoader = new GameObject();
+                spriteLoader.AddComponent<ResourceLoader>();
+            }
         }
 
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)

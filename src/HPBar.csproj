@@ -62,22 +62,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bg" />
-    <None Include="Resources\bossbg" />
-    <None Include="Resources\bossfg" />
-    <None Include="Resources\bossoutline" />
-    <None Include="Resources\fg" />
-    <None Include="Resources\mg" />
-    <None Include="Resources\outline" />
-    <None Include="Resources\outline2" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\enemyhpbaraltfinalfilling.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\enemyhpbarfinalempty.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\mod\TriMod\refs\Assembly-CSharp.dll</HintPath>
     </Reference>
@@ -97,8 +81,17 @@
       <HintPath>..\..\mod\TriMod\refs\UnityEngine.UIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\bg.png" />
+    <EmbeddedResource Include="Resources\fg.png" />
+    <EmbeddedResource Include="Resources\mg.png" />
+    <EmbeddedResource Include="Resources\ol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\bossbg.png" />
+    <EmbeddedResource Include="Resources\bossfg.png" />
+    <EmbeddedResource Include="Resources\bossol.png" />
+  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -108,8 +101,7 @@
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="@echo on" />
     <Exec Command="echo Copying mod" />
-    <Exec
-            Command="copy &quot;$(TargetPath)&quot; &quot;E:\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods\&quot;" />
+    <Exec Command="copy &quot;$(TargetPath)&quot; &quot;E:\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods\&quot;" />
   </Target>
   <ItemGroup />
 </Project>

@@ -1,42 +1,44 @@
-﻿using EnemyHPBar.Properties;
+﻿using System.IO;
+using EnemyHPBar.Properties;
+using UnityEngine;
 
 namespace EnemyHPBar
 {
-    class ResourceLoader
+    class ResourceLoader : MonoBehaviour 
     {
         public static byte[] GetBackgroundImage()
         {
-            return Resources.bg;
+            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_BG);
         }
 
         public static byte[] GetForegroundImage()
         {
-            return Resources.fg;
+            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_FG);
         }
 
         public static byte[] GetMiddlegroundImage()
         {
-            return Resources.mg;
+            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_MG);
         }
 
         public static byte[] GetOutlineImage()
         {
-            return Resources.outline;
+            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_OL);
         }
 
         public static byte[] GetBossBackgroundImage()
         {
-            return Resources.bossbg;
+            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_BOSSBG);
         }
 
         public static byte[] GetBossForegroundImage()
         {
-            return Resources.bossfg;
+            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_BOSSFG);
         }
 
         public static byte[] GetBossOutlineImage()
         {
-            return Resources.bossoutline;
+            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_BOSSOL);
         }
     }
 }
