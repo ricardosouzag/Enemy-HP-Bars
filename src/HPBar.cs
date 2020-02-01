@@ -9,9 +9,10 @@ namespace EnemyHPBar
 {
     public class EnemyHPBar : Mod
     {
-        private const string version = "1.2.1";
+        private const string version = "1.3.0";
 
         public static GameObject canvas;
+        public static GameObject bossCanvas;
         
         public static Sprite bg;
         public static Sprite mg;
@@ -38,7 +39,9 @@ namespace EnemyHPBar
             
 
             canvas = CanvasUtil.CreateCanvas(RenderMode.WorldSpace, new Vector2(16f, 9f));
+            bossCanvas = CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(1280f, 720f));
             canvas.GetComponent<Canvas>().sortingOrder = 1;
+            bossCanvas.GetComponent<Canvas>().sortingOrder = 1;
             
             
 
@@ -51,6 +54,7 @@ namespace EnemyHPBar
             bossol = CanvasUtil.CreateSprite(ResourceLoader.GetBossOutlineImage(), 0, 0, 966, 27);
 
             Object.DontDestroyOnLoad(canvas);
+            Object.DontDestroyOnLoad(bossCanvas);
 
             Log("Initialized EnemyHPBars");
         }

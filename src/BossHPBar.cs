@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using GlobalEnums;
+using Logger = Modding.Logger;
 
 namespace EnemyHPBar
 {
@@ -23,17 +24,17 @@ namespace EnemyHPBar
 
         public void Awake()
         {
-            Modding.Logger.LogDebug($@"Creating hpbar for {gameObject.name}");
-            Modding.Logger.LogDebug($"{gameObject.name} is boss");
+            Logger.LogDebug($@"Creating hpbar for {gameObject.name}");
+            Logger.LogDebug($"{gameObject.name} is boss");
             
 
-            bg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.bossbg,
+            bg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.bossCanvas, EnemyHPBar.bossbg,
                 new CanvasUtil.RectData(new Vector2(960f, 25f), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
                     new Vector2(0.5f, 0f)));
-            fg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.bossfg,
+            fg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.bossCanvas, EnemyHPBar.bossfg,
                 new CanvasUtil.RectData(new Vector2(960f, 25f), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
                     new Vector2(0.5f, 0f)));
-            ol_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.bossol,
+            ol_go = CanvasUtil.CreateImagePanel(EnemyHPBar.bossCanvas, EnemyHPBar.bossol,
                 new CanvasUtil.RectData(new Vector2(966f, 27f), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
                     new Vector2(0.5f, 0f)));
             
@@ -119,7 +120,7 @@ namespace EnemyHPBar
 
             if (gameObject.name == "New Game Object" && currHP <= 0)
             {
-                Modding.Logger.LogDebug($@"Placeholder killed");
+                Logger.LogDebug($@"Placeholder killed");
                 Destroy(gameObject);
             }
 

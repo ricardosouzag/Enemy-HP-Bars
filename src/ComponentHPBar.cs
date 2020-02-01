@@ -7,19 +7,16 @@ namespace EnemyHPBar
 {
     public class HPBar : MonoBehaviour
     {
-        public Sprite bg;
-        public Sprite mg;
-        public Sprite fg;
-        public Sprite ol;
-
-        private GameObject canvas;
         private GameObject bg_go;
         private GameObject mg_go;
         private GameObject fg_go;
         private GameObject ol_go;
+        private CanvasRenderer bg_cr;
+        private CanvasRenderer fg_cr;
+        private CanvasRenderer mg_cr;
+        private CanvasRenderer ol_cr;
 
         
-        public CanvasGroup canvasGroup;
         public Image health_bar;
         public Image hpbg;
 
@@ -36,29 +33,25 @@ namespace EnemyHPBar
 
         public void Awake()
         {
-            Modding.Logger.Log($@"Creating canvas for {gameObject.name}");
+            Modding.Logger.Log($@"Creating hpbar for {gameObject.name}");
 
-            On.CameraController.FadeOut += CameraController_FadeOut;
-
-            bg = CanvasUtil.CreateSprite(ResourceLoader.GetBackgroundImage(), 0, 0, 175, 19);
-            mg = CanvasUtil.CreateSprite(ResourceLoader.GetMiddlegroundImage(), 0, 0, 117, 10);
-            fg = CanvasUtil.CreateSprite(ResourceLoader.GetForegroundImage(), 0, 0, 117, 10);
-            ol = CanvasUtil.CreateSprite(ResourceLoader.GetOutlineImage(), 0, 0, 175, 19);
-
-            canvas = CanvasUtil.CreateCanvas(RenderMode.WorldSpace, new Vector2(16f, 9f));
-            canvasGroup = canvas.GetComponent<CanvasGroup>();
-            canvas.GetComponent<Canvas>().sortingOrder = 1;
-
+//            On.CameraController.FadeOut += CameraController_FadeOut;
+            
             screenScale = new Vector2(Screen.width/1280f * 0.025f, Screen.height/720f * 0.025f);
 
-            bg_go = CanvasUtil.CreateImagePanel(canvas, bg,
+            bg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.bg,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(175, 19), screenScale), new Vector2(0, 32)));
-            mg_go = CanvasUtil.CreateImagePanel(canvas, mg,
+            mg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.mg,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(117, 10), screenScale), new Vector2(0, 32)));
-            fg_go = CanvasUtil.CreateImagePanel(canvas, fg,
+            fg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.fg,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(117, 10), screenScale), new Vector2(0, 32)));
-            ol_go = CanvasUtil.CreateImagePanel(canvas, ol,
+            ol_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.ol,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(175, 19), screenScale), new Vector2(0, 32)));
+
+            bg_cr = bg_go.GetComponent<CanvasRenderer>();
+            fg_cr = fg_go.GetComponent<CanvasRenderer>();
+            mg_cr = mg_go.GetComponent<CanvasRenderer>();
+            ol_cr = ol_go.GetComponent<CanvasRenderer>();
 
             hpbg = mg_go.GetComponent<Image>();
             hpbg.type = Image.Type.Filled;
@@ -73,34 +66,51 @@ namespace EnemyHPBar
             bg_go.GetComponent<Image>().preserveAspect = false;
             ol_go.GetComponent<Image>().preserveAspect = false;
 
-            DontDestroyOnLoad(canvas);
-
             hm = gameObject.GetComponent<HealthManager>();
             
-            canvasGroup.alpha = 0;
+            SetHPBarAlpha(0);
             maxHP = hm.hp;
             currHP = hm.hp;
         }
 
-        private void CameraController_FadeOut(On.CameraController.orig_FadeOut orig, CameraController self, GlobalEnums.CameraFadeType type)
+        private void SetHPBarAlpha(float alpha)
         {
-            Destroy(this);
-            orig(self, type);
+            bg_cr.SetAlpha(alpha);
+            fg_cr.SetAlpha(alpha);
+            mg_cr.SetAlpha(alpha);
+            ol_cr.SetAlpha(alpha);
         }
 
+        private void DestroyHPBar()
+        {
+            Destroy(fg_go);
+            Destroy(bg_go);
+            Destroy(mg_go);
+            Destroy(ol_go);
+            Destroy(hpbg);
+            Destroy(health_bar);
+        }
+
+        private void MoveHPBar(Vector2 position)
+        {
+            fg_go.transform.position = position;
+            mg_go.transform.position = position;
+            bg_go.transform.position = position;
+            ol_go.transform.position = position;
+        }
+        
         void OnDestroy()
         {
             Modding.Logger.LogDebug($@"Destroying enemy {gameObject.name}");
-            canvasGroup.alpha = 0;
-            Destroy(this);
+            SetHPBarAlpha(0);
+            DestroyHPBar();
             Modding.Logger.LogDebug($@"Destroyed enemy {gameObject.name}");
         }
 
         void OnDisable()
         {       
             Modding.Logger.LogDebug($@"Disabling enemy {gameObject.name}");
-            canvasGroup.alpha = 0;
-            Destroy(this);
+            SetHPBarAlpha(0);
             Modding.Logger.LogDebug($@"Disabled enemy {gameObject.name}");
         }
 
@@ -121,7 +131,7 @@ namespace EnemyHPBar
 
             if (health_bar.fillAmount < 1f)
             {
-                canvasGroup.alpha = 1;
+                SetHPBarAlpha(1);
             }
             if (gameObject.name == "New Game Object" && currHP <= 0)
             {
@@ -131,7 +141,7 @@ namespace EnemyHPBar
 
             if (currHP <= 0f)
             {
-                canvasGroup.alpha = 0;
+                SetHPBarAlpha(0);
             }
             oldHP = hm.hp;
         }
@@ -139,10 +149,7 @@ namespace EnemyHPBar
         void LateUpdate()
         {
             objectPos = gameObject.transform.position + Vector3.up * 1.5f;
-            fg_go.transform.position = objectPos;
-            mg_go.transform.position = objectPos;
-            bg_go.transform.position = objectPos;
-            ol_go.transform.position = objectPos;
+            MoveHPBar(objectPos);
         }
     }
 }
