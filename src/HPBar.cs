@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using HutongGames.PlayMaker.Actions;
 using Modding;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -74,18 +73,19 @@ namespace EnemyHPBar
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             
             
-            canvas = CanvasUtil.CreateCanvas(RenderMode.WorldSpace, new Vector2(16f, 9f));
-            bossCanvas = CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(1280f, 720f));
+            canvas = CanvasUtil.CreateCanvas(RenderMode.WorldSpace, new Vector2(1920f, 1080f));
+            bossCanvas = CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(1920f, 1080f));
             canvas.GetComponent<Canvas>().sortingOrder = 1;
             bossCanvas.GetComponent<Canvas>().sortingOrder = 1;
             
-            bg = CanvasUtil.CreateSprite(ResourceLoader.GetBackgroundImage(), 0, 0, 175, 19);
-            mg = CanvasUtil.CreateSprite(ResourceLoader.GetMiddlegroundImage(), 0, 0, 117, 10);
-            fg = CanvasUtil.CreateSprite(ResourceLoader.GetForegroundImage(), 0, 0, 117, 10);
-            ol = CanvasUtil.CreateSprite(ResourceLoader.GetOutlineImage(), 0, 0, 175, 19);
-            bossbg = CanvasUtil.CreateSprite(ResourceLoader.GetBossBackgroundImage(), 0, 0, 1, 1);
-            bossfg = CanvasUtil.CreateSprite(ResourceLoader.GetBossForegroundImage(), 0, 0, 960, 1);
-            bossol = CanvasUtil.CreateSprite(ResourceLoader.GetBossOutlineImage(), 0, 0, 966, 27);
+            
+            bossol = HPBarCreateSprite(ResourceLoader.GetBossOutlineImage());
+            bossbg = HPBarCreateSprite(ResourceLoader.GetBossBackgroundImage());
+            bossfg = HPBarCreateSprite(ResourceLoader.GetBossForegroundImage());
+            ol = HPBarCreateSprite(ResourceLoader.GetOutlineImage());
+            fg = HPBarCreateSprite(ResourceLoader.GetForegroundImage());
+            mg = HPBarCreateSprite(ResourceLoader.GetMiddlegroundImage());
+            bg = HPBarCreateSprite(ResourceLoader.GetBackgroundImage());
 
             Object.DontDestroyOnLoad(canvas);
             Object.DontDestroyOnLoad(bossCanvas);
@@ -100,6 +100,14 @@ namespace EnemyHPBar
                 spriteLoader = new GameObject();
                 spriteLoader.AddComponent<ResourceLoader>();
             }
+        }
+
+        private Sprite HPBarCreateSprite(byte[] data)
+        {
+            Texture2D texture2D = new Texture2D(1, 1);
+            texture2D.LoadImage(data);
+            texture2D.anisoLevel = 0;
+            return Sprite.Create(texture2D, new Rect((float) 0, (float) 0, (float) texture2D.width, (float) texture2D.height), Vector2.zero);
         }
 
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)

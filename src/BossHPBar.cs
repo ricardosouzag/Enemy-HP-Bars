@@ -29,13 +29,13 @@ namespace EnemyHPBar
             
 
             bg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.bossCanvas, EnemyHPBar.bossbg,
-                new CanvasUtil.RectData(new Vector2(960f, 25f), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
+                new CanvasUtil.RectData(new Vector2(0.745f * Screen.width, 0.0365f * Screen.height), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
                     new Vector2(0.5f, 0f)));
             fg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.bossCanvas, EnemyHPBar.bossfg,
-                new CanvasUtil.RectData(new Vector2(960f, 25f), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
+                new CanvasUtil.RectData(new Vector2(0.745f * Screen.width, 0.0365f * Screen.height), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
                     new Vector2(0.5f, 0f)));
             ol_go = CanvasUtil.CreateImagePanel(EnemyHPBar.bossCanvas, EnemyHPBar.bossol,
-                new CanvasUtil.RectData(new Vector2(966f, 27f), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
+                new CanvasUtil.RectData(new Vector2(0.75f * Screen.width, 0.04f * Screen.height), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
                     new Vector2(0.5f, 0f)));
             
             bg_cr = bg_go.GetComponent<CanvasRenderer>();
