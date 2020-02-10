@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using EnemyHPBar.Properties;
 using UnityEngine;
 
 namespace EnemyHPBar

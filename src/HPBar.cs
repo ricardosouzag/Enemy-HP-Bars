@@ -10,7 +10,9 @@ namespace EnemyHPBar
 {
     public class EnemyHPBar : Mod
     {
-        private const string version = "2.0.0";
+        private const string version = "2.1.0";
+
+        public static EnemyHPBar instance;
 
         public static GameObject canvas;
         public static GameObject bossCanvas;
@@ -44,6 +46,8 @@ namespace EnemyHPBar
         public override void Initialize()
         {
             Log("Initializing EnemyHPBars");
+
+            instance = this;
 
             if (!Directory.Exists(DATA_DIR))
             {
@@ -92,6 +96,14 @@ namespace EnemyHPBar
 
             Log("Initialized EnemyHPBars");
         }
+        
+        // public override ModSettings GlobalSettings
+        // {
+        //     get => _globalSettings;
+        //     set => _globalSettings = (Settings) value;
+        // }
+        //
+        // private Settings _globalSettings = new Settings();
 
         public void LoadLoader()
         {

@@ -23,6 +23,10 @@ namespace EnemyHPBar
         public HealthManager hm;
         public Vector2 objectPos;
 
+        private float bossbgScale = EnemyHPBar.instance.GlobalSettings.GetFloat(null, "bossbgScale");
+        private float bossfgScale = EnemyHPBar.instance.GlobalSettings.GetFloat(null, "bossfgScale");
+        private float bossolScale = EnemyHPBar.instance.GlobalSettings.GetFloat(null, "bossbolcale");
+
         public void Awake()
         {
             Logger.LogDebug($@"Creating hpbar for {gameObject.name}");
@@ -34,15 +38,16 @@ namespace EnemyHPBar
 
             bg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.bossCanvas, EnemyHPBar.bossbg,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(EnemyHPBar.bossbg.texture.width, EnemyHPBar.bossbg
-                .texture.height), screenScale), new Vector2(0f, 32f), new Vector2 (0.5f, 0f),
+                .texture.height), screenScale * bossbgScale), new Vector2(0f, 32f), 
+                new Vector2 (0.5f, 0f),
                     new Vector2(0.5f, 0f)));
             fg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.bossCanvas, EnemyHPBar.bossfg,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(EnemyHPBar.bossfg.texture.width, EnemyHPBar.bossfg
-                        .texture.height), screenScale), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
+                        .texture.height), screenScale * bossfgScale), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
                     new Vector2(0.5f, 0f)));
             ol_go = CanvasUtil.CreateImagePanel(EnemyHPBar.bossCanvas, EnemyHPBar.bossol,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(EnemyHPBar.bossol.texture.width, EnemyHPBar.bossol
-                        .texture.height), screenScale), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
+                        .texture.height), screenScale * bossolScale), new Vector2(0f, 32f), new Vector2(0.5f, 0f),
                     new Vector2(0.5f, 0f)));
             
             bg_cr = bg_go.GetComponent<CanvasRenderer>();
