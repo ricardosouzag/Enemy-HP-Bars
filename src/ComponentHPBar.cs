@@ -29,6 +29,11 @@ namespace EnemyHPBar
 
         public Vector2 objectPos;
         public Vector2 screenScale;
+        
+        private float bgScale = EnemyHPBar.instance._globalSettings.bgScale;
+        private float fgScale = EnemyHPBar.instance._globalSettings.fgScale;
+        private float olScale = EnemyHPBar.instance._globalSettings.olScale;
+        private float mgScale = EnemyHPBar.instance._globalSettings.mgScale;
 
 
         public void Awake()
@@ -41,17 +46,17 @@ namespace EnemyHPBar
 
             bg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.bg,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(EnemyHPBar.bg.texture.width, EnemyHPBar.bg.texture
-                .height), screenScale), new Vector2(0, 
+                .height), screenScale * bgScale), new Vector2(0, 
                 32)));
             mg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.mg,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(EnemyHPBar.mg.texture.width, EnemyHPBar.mg.texture
-                    .height), screenScale), new Vector2(0, 32)));
+                    .height), screenScale * mgScale), new Vector2(0, 32)));
             fg_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.fg,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(EnemyHPBar.fg.texture.width, EnemyHPBar.fg.texture
-                    .height), screenScale), new Vector2(0, 32)));
+                    .height), screenScale * fgScale), new Vector2(0, 32)));
             ol_go = CanvasUtil.CreateImagePanel(EnemyHPBar.canvas, EnemyHPBar.ol,
                 new CanvasUtil.RectData(Vector2.Scale(new Vector2(EnemyHPBar.ol.texture.width, EnemyHPBar.ol.texture
-                    .height), screenScale), new Vector2(0, 32)));
+                    .height), screenScale * olScale), new Vector2(0, 32)));
 
             bg_cr = bg_go.GetComponent<CanvasRenderer>();
             fg_cr = fg_go.GetComponent<CanvasRenderer>();

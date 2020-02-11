@@ -23,16 +23,16 @@ namespace EnemyHPBar
         public HealthManager hm;
         public Vector2 objectPos;
 
-        private float bossbgScale = EnemyHPBar.instance.GlobalSettings.GetFloat(null, "bossbgScale");
-        private float bossfgScale = EnemyHPBar.instance.GlobalSettings.GetFloat(null, "bossfgScale");
-        private float bossolScale = EnemyHPBar.instance.GlobalSettings.GetFloat(null, "bossbolcale");
+        private float bossbgScale = EnemyHPBar.instance._globalSettings.bossbgScale;
+        private float bossfgScale = EnemyHPBar.instance._globalSettings.bossfgScale;
+        private float bossolScale = EnemyHPBar.instance._globalSettings.bossolScale;
 
         public void Awake()
         {
             Logger.LogDebug($@"Creating hpbar for {gameObject.name}");
             Logger.LogDebug($"{gameObject.name} is boss");
             
-            
+
             screenScale = new Vector2(Screen.width/1280f, Screen.height/720f);
             
 

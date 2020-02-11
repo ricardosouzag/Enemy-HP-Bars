@@ -37,7 +37,6 @@ namespace EnemyHPBar
         public static Sprite bossfg;
         public static Sprite bossol;
         
-
         public override string GetVersion()
         {
             return version;
@@ -73,7 +72,7 @@ namespace EnemyHPBar
             LoadLoader();
 
             ModHooks.Instance.OnEnableEnemyHook += Instance_OnEnableEnemyHook;
-            ModHooks.Instance.OnRecieveDeathEventHook += Instance_OnRecieveDeathEventHook;
+            ModHooks.Instance.OnReceiveDeathEventHook += Instance_OnReceiveDeathEventHook;
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             
             
@@ -96,14 +95,14 @@ namespace EnemyHPBar
 
             Log("Initialized EnemyHPBars");
         }
+
+        public override ModSettings GlobalSettings
+        {
+            get => _globalSettings;
+            set => _globalSettings = (Settings) value;
+        }
         
-        // public override ModSettings GlobalSettings
-        // {
-        //     get => _globalSettings;
-        //     set => _globalSettings = (Settings) value;
-        // }
-        //
-        // private Settings _globalSettings = new Settings();
+        internal Settings _globalSettings = new Settings();
 
         public void LoadLoader()
         {
@@ -127,7 +126,8 @@ namespace EnemyHPBar
             ActiveBosses = new List<string>();
         }
 
-        private bool Instance_OnRecieveDeathEventHook(EnemyDeathEffects enemyDeathEffects, bool eventAlreadyRecieved, ref float? attackDirection, ref bool resetDeathEvent, ref bool spellBurn, ref bool isWatery)
+        private void Instance_OnReceiveDeathEventHook(EnemyDeathEffects enemyDeathEffects, bool eventAlreadyRecieved, 
+        ref float? attackDirection, ref bool resetDeathEvent, ref bool spellBurn, ref bool isWatery)
         {
             Log($@"Enemy {enemyDeathEffects.gameObject.name} ded");
             if (enemyDeathEffects.gameObject.GetComponent<HPBar>() != null)
@@ -155,7 +155,7 @@ namespace EnemyHPBar
                 }
             }
 
-            return eventAlreadyRecieved;
+            return;
         }
 
         private bool Instance_OnEnableEnemyHook(GameObject enemy, bool isAlreadyDead)
