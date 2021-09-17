@@ -30,10 +30,10 @@ namespace EnemyHPBar
         public Vector2 objectPos;
         public Vector2 screenScale;
         
-        private float bgScale = EnemyHPBar.instance._globalSettings.bgScale;
-        private float fgScale = EnemyHPBar.instance._globalSettings.fgScale;
-        private float olScale = EnemyHPBar.instance._globalSettings.olScale;
-        private float mgScale = EnemyHPBar.instance._globalSettings.mgScale;
+        private float bgScale = EnemyHPBar.instance.globalSettings.bgScale;
+        private float fgScale = EnemyHPBar.instance.globalSettings.fgScale;
+        private float olScale = EnemyHPBar.instance.globalSettings.olScale;
+        private float mgScale = EnemyHPBar.instance.globalSettings.mgScale;
 
 
         public void Awake()

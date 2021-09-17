@@ -23,9 +23,9 @@ namespace EnemyHPBar
         public HealthManager hm;
         public Vector2 objectPos;
 
-        private float bossbgScale = EnemyHPBar.instance._globalSettings.bossbgScale;
-        private float bossfgScale = EnemyHPBar.instance._globalSettings.bossfgScale;
-        private float bossolScale = EnemyHPBar.instance._globalSettings.bossolScale;
+        private float bossbgScale = EnemyHPBar.instance.globalSettings.bossbgScale;
+        private float bossfgScale = EnemyHPBar.instance.globalSettings.bossfgScale;
+        private float bossolScale = EnemyHPBar.instance.globalSettings.bossolScale;
 
         public void Awake()
         {

@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 
 namespace EnemyHPBar
 {
-    public class EnemyHPBar : Mod
+    public class EnemyHPBar : Mod, IGlobalSettings<Settings>
     {
-        private const string version = "2.1.0";
+        private const string version = "2.2.0";
 
         public static EnemyHPBar instance;
 
@@ -27,7 +27,7 @@ namespace EnemyHPBar
         public const string HPBAR_BOSSBG = "bossbg.png";
         public const string SPRITE_FOLDER = "CustomHPBar";
 
-        public static readonly string DATA_DIR = Path.GetFullPath(Application.dataPath + "/Managed/Mods/" + SPRITE_FOLDER);
+        public static readonly string DATA_DIR = Path.GetFullPath(Application.dataPath + "/Managed/Mods/EnemyHPBar/" + SPRITE_FOLDER);
 
         public static Sprite bg;
         public static Sprite mg;
@@ -71,8 +71,8 @@ namespace EnemyHPBar
 
             LoadLoader();
 
-            ModHooks.Instance.OnEnableEnemyHook += Instance_OnEnableEnemyHook;
-            ModHooks.Instance.OnReceiveDeathEventHook += Instance_OnReceiveDeathEventHook;
+            ModHooks.OnEnableEnemyHook += Instance_OnEnableEnemyHook;
+            ModHooks.OnReceiveDeathEventHook += Instance_OnReceiveDeathEventHook;
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             
             
@@ -95,14 +95,12 @@ namespace EnemyHPBar
 
             Log("Initialized EnemyHPBars");
         }
-
-        public override ModSettings GlobalSettings
-        {
-            get => _globalSettings;
-            set => _globalSettings = (Settings) value;
-        }
+      
+        internal Settings globalSettings = new();
         
-        internal Settings _globalSettings = new Settings();
+        public void OnLoadGlobal(Settings s) => globalSettings = s;
+
+        public Settings OnSaveGlobal() => globalSettings;
 
         public void LoadLoader()
         {
@@ -198,5 +196,6 @@ namespace EnemyHPBar
         public static List<string> ActiveBosses;
 
         private static readonly FieldInfo DEATH_FI = typeof(EnemyDeathEffects).GetField("enemyDeathType", BindingFlags.NonPublic | BindingFlags.Instance);
+
     }
 }

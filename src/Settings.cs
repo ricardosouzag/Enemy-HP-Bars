@@ -6,7 +6,8 @@ using UnityEngine;
 
 namespace EnemyHPBar
 {
-	public class Settings : ModSettings
+	[Serializable]
+	public class Settings
 	{
 		public float fgScale = 1.0f;
 		public float bgScale = 1.0f;
