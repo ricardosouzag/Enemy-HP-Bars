@@ -7,37 +7,37 @@ namespace EnemyHPBar
     {
         public static byte[] GetBackgroundImage()
         {
-            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_BG);
+            return File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR,EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_BG);
         }
 
         public static byte[] GetForegroundImage()
         {
-            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_FG);
+            return File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_FG);
         }
 
         public static byte[] GetMiddlegroundImage()
         {
-            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_MG);
+            return File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_MG);
         }
 
         public static byte[] GetOutlineImage()
         {
-            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_OL);
+            return File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_OL);
         }
 
         public static byte[] GetBossBackgroundImage()
         {
-            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_BOSSBG);
+            return File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_BOSSBG);
         }
 
         public static byte[] GetBossForegroundImage()
         {
-            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_BOSSFG);
+            return File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_BOSSFG);
         }
 
         public static byte[] GetBossOutlineImage()
         {
-            return File.ReadAllBytes(EnemyHPBar.DATA_DIR + "/" + EnemyHPBar.HPBAR_BOSSOL);
+            return File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_BOSSOL);
         }
     }
 }

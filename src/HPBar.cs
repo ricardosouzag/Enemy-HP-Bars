@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace EnemyHPBar
 {
-    public class EnemyHPBar : Mod, IGlobalSettings<Settings>
+    public class EnemyHPBar : Mod, IGlobalSettings<Settings>,ICustomMenuMod
     {
         private const string version = "2.2.0";
 
@@ -27,7 +27,7 @@ namespace EnemyHPBar
         public const string HPBAR_BOSSBG = "bossbg.png";
         public const string SPRITE_FOLDER = "CustomHPBar";
 
-        public static readonly string DATA_DIR = Path.GetFullPath(Application.dataPath + "/Managed/Mods/EnemyHPBar/" + SPRITE_FOLDER);
+        public static readonly string DATA_DIR = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),SPRITE_FOLDER);
 
         public static Sprite bg;
         public static Sprite mg;
@@ -36,7 +36,11 @@ namespace EnemyHPBar
         public static Sprite bossbg;
         public static Sprite bossfg;
         public static Sprite bossol;
-        
+        public bool ToggleButtonInsideMenu { get; } = true;
+        public MenuScreen GetMenuScreen(MenuScreen modListMenu, ModToggleDelegates? toggle)
+        {
+            return BetterMenu.GetMenu (modListMenu, toggle);
+        }
         public override string GetVersion()
         {
             return version;
@@ -47,18 +51,21 @@ namespace EnemyHPBar
             Log("Initializing EnemyHPBars");
 
             instance = this;
-
+            Log(DATA_DIR);
             if (!Directory.Exists(DATA_DIR))
             {
                 Directory.CreateDirectory(DATA_DIR);
             }
-
+            if (!Directory.Exists(Path.Combine(DATA_DIR, "Default")))
+            {
+                Directory.CreateDirectory(Path.Combine(DATA_DIR, "Default"));
+            }
             foreach (string res in Assembly.GetExecutingAssembly().GetManifestResourceNames().Where(t => t.EndsWith("png")))
             {
-                string properRes = res.Replace("EnemyHPBar.Resources.", "");
-                string resPath = DATA_DIR + "/" + properRes;
-
+                string properRes = res.Replace("src.Resources.", "");
+                string resPath = Path.Combine(DATA_DIR, "Default", properRes);
                 if (File.Exists(resPath)) continue;
+                
                 var file = File.Create(resPath);
                 using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(res))
                 {
@@ -68,7 +75,7 @@ namespace EnemyHPBar
                     file.Dispose();
                 }
             }
-
+            GetSkinList();
             LoadLoader();
 
             ModHooks.OnEnableEnemyHook += Instance_OnEnableEnemyHook;
@@ -111,7 +118,7 @@ namespace EnemyHPBar
             }
         }
 
-        private Sprite HPBarCreateSprite(byte[] data)
+        public Sprite HPBarCreateSprite(byte[] data)
         {
             Texture2D texture2D = new Texture2D(1, 1);
             texture2D.LoadImage(data);
@@ -193,9 +200,23 @@ namespace EnemyHPBar
 
             return false;
         }
+        internal static void GetSkinList()
+        {
+            var dicts = Directory.GetDirectories(DATA_DIR);
+            SkinList = new();
+            for(int i=0;i<dicts.Length;i++)
+            {
+                string directoryname = new DirectoryInfo(dicts[i]).Name;
+                SkinList.Add(new HPBarList(directoryname));
+            }
+            EnemyHPBar.instance.CurrentSkin = BetterMenu.GetSkinById(EnemyHPBar.instance.globalSettings.DefaultSkin);
+            Modding.Logger.Log("Load Skinslist");
+        }
         public static List<string> ActiveBosses;
 
         private static readonly FieldInfo DEATH_FI = typeof(EnemyDeathEffects).GetField("enemyDeathType", BindingFlags.NonPublic | BindingFlags.Instance);
-
+        public static List<ISelectableSkin> SkinList;
+        public ISelectableSkin CurrentSkin;
+        public ISelectableSkin DefaultSkin;
     }
 }
