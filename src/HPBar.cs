@@ -107,7 +107,11 @@ namespace EnemyHPBar
         
         public void OnLoadGlobal(Settings s) => globalSettings = s;
 
-        public Settings OnSaveGlobal() => globalSettings;
+        public Settings OnSaveGlobal()
+        {
+            globalSettings.CurrentSkin = EnemyHPBar.instance.CurrentSkin.GetId();
+            return globalSettings;
+        }
 
         public void LoadLoader()
         {
@@ -209,7 +213,7 @@ namespace EnemyHPBar
                 string directoryname = new DirectoryInfo(dicts[i]).Name;
                 SkinList.Add(new HPBarList(directoryname));
             }
-            EnemyHPBar.instance.CurrentSkin = BetterMenu.GetSkinById(EnemyHPBar.instance.globalSettings.DefaultSkin);
+            EnemyHPBar.instance.CurrentSkin = BetterMenu.GetSkinById(EnemyHPBar.instance.globalSettings.CurrentSkin);
             Modding.Logger.Log("Load Skinslist");
         }
         public static List<string> ActiveBosses;

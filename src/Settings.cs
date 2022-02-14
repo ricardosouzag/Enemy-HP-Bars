@@ -18,5 +18,6 @@ namespace EnemyHPBar
 		public float bossolScale = 1.0f;
 		public int NameLength = 10;
 		public string DefaultSkin { get; set; } = "Default";
+		public string CurrentSkin { get; set; } = "Default";
 	}
 }
