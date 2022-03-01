@@ -1,88 +1,81 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B328DAF-3E2F-4127-A5B8-B29A3311B78E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>src</RootNamespace>
-    <AssemblyName>EnemyHPBar</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(HKRefs)\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="PlayMaker">
-      <HintPath>$(HKRefs)\PlayMaker.dll</HintPath>
-    </Reference>
-    <Reference Include="Satchel">
-      <HintPath>$(HKRefs)\Mods\Satchel\Satchel.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>$(HKRefs)\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(HKRefs)\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>$(HKRefs)\UnityEngine.ImageConversionModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>$(HKRefs)\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>$(HKRefs)\UnityEngine.UIModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BetterMenu.cs" />
-    <Compile Include="BossHPBar.cs" />
-    <Compile Include="ComponentHPBar.cs" />
-    <Compile Include="EnemyHPBar.cs" />
-    <Compile Include="HPBarList.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceLoader.cs" />
-    <Compile Include="Settings.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\bg.png" />
-    <EmbeddedResource Include="Resources\bossbg.png" />
-    <EmbeddedResource Include="Resources\bossfg.png" />
-    <EmbeddedResource Include="Resources\bossol.png" />
-    <EmbeddedResource Include="Resources\fg.png" />
-    <EmbeddedResource Include="Resources\mg.png" />
-    <EmbeddedResource Include="Resources\ol.png" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<AssemblyTitle>EnemyHPBar</AssemblyTitle>
+		<Version>3.0.0</Version>
+		<Description>A Hollow Knight mod adding a customizable HP bar for all enemies and bosses</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Copyright>Copyright © 2018-2022</Copyright>
+
+		<LangVersion>10.0</LangVersion>
+		<TargetFramework>net472</TargetFramework>
+		<PlatformTarget>x64</PlatformTarget>
+		<DebugType>portable</DebugType>
+		<RootNamespace>EnemyHPBar</RootNamespace>
+
+		<Optimize>True</Optimize>
+		<Deterministic>True</Deterministic>
+		<CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<PathMap>$([System.IO.Path]::GetFullPath('$(SolutionDir)'))=./</PathMap>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<HKRefs Condition="$(HKRefs) == ''">../HKManaged/</HKRefs>
+		<HKModdingApi Condition="$(HKModdingApi) == ''">$(HKRefs)</HKModdingApi>
+		<HKModRefs Condition="$(HKModRefs) == ''">$(HKRefs)/Mods</HKModRefs>
+		<HKModOutputPath Condition="$(HKModOutputPath) == ''">$(HKModRefs)</HKModOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources/**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(HKModdingApi)/Assembly-CSharp.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(HKRefs)/UnityEngine.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(HKRefs)/UnityEngine.CoreModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.ImageConversionModule">
+			<HintPath>$(HKRefs)/UnityEngine.ImageConversionModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>$(HKRefs)/UnityEngine.UI.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.UIModule">
+			<HintPath>$(HKRefs)/UnityEngine.UIModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="PlayMaker">
+			<HintPath>$(HKRefs)/PlayMaker.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="Satchel">
+			<HintPath>$(HKModRefs)/Satchel/Satchel.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+	<Target Name="CopyMod" AfterTargets="PostBuildEvent">
+		<Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).pdb" DestinationFolder="$(HKModOutputPath)/Enemy HP Bar" SkipUnchangedFiles="true" />
+	</Target>
+
+	<Target Name="CreateReleaseZip" AfterTargets="PostBuildEvent" Condition="$(Configuration) == 'Release'">
+		<RemoveDir Directories="$(SolutionDir)/dist" />
+		<MakeDir Directories="$(SolutionDir)/dist/tmp" />
+
+		<Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).pdb;$(SolutionDir)/LICENSE" DestinationFolder="$(SolutionDir)/dist/tmp" />
+		<ZipDirectory SourceDirectory="$(SolutionDir)/dist/tmp" DestinationFile="$(SolutionDir)/dist/$(TargetName)-v$(Version).zip" />
+
+		<RemoveDir Directories="$(SolutionDir)/dist/tmp" />
+	</Target>
 </Project>
