@@ -1,4 +1,4 @@
-namespace EnemyHPBar;
+﻿namespace EnemyHPBar;
 
 public class EnemyHPBar : Mod, IGlobalSettings<Settings>, ICustomMenuMod {
 	private static readonly Lazy<string> Version = new(() => Assembly
@@ -140,6 +140,10 @@ public class EnemyHPBar : Mod, IGlobalSettings<Settings>, ICustomMenuMod {
 	}
 
 	private bool Instance_OnEnableEnemyHook(GameObject enemy, bool isAlreadyDead) {
+		if (enemy.GetComponent<DisableHPBar>() != null) {
+			return isAlreadyDead;
+		}
+
 		HealthManager hm = enemy.GetComponent<HealthManager>();
 
 		if (hm == null) {
@@ -152,6 +156,10 @@ public class EnemyHPBar : Mod, IGlobalSettings<Settings>, ICustomMenuMod {
 			: DEATH_FI?.GetValue(ede) as EnemyDeathTypes?;
 
 		bool isBoss = hm.hp >= 200 || enemy.tag == "Boss" || deathType == EnemyDeathTypes.LargeInfected;
+		if (enemy.GetComponent<BossMarker>() is BossMarker marker) {
+			isBoss = marker.isBoss;
+		}
+
 
 		if (enemy.name.Contains("White Palace Fly")) {
 			return false;

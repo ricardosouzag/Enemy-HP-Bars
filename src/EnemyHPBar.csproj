@@ -55,6 +55,10 @@
 			<HintPath>$(HKRefs)/UnityEngine.UIModule.dll</HintPath>
 			<Private>false</Private>
 		</Reference>
+		<Reference Include="MonoMod.Utils">
+			<HintPath>$(HKModdingApi)/MonoMod.Utils.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
 		<Reference Include="PlayMaker">
 			<HintPath>$(HKRefs)/PlayMaker.dll</HintPath>
 			<Private>false</Private>
