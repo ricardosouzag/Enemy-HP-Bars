@@ -1,14 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Modding;
-using UnityEngine;
 
-namespace EnemyHPBar
-{
+namespace EnemyHPBar {
 	[Serializable]
-	public class Settings
-	{
+	public class Settings {
 		public float fgScale = 1.0f;
 		public float bgScale = 1.0f;
 		public float mgScale = 1.0f;
