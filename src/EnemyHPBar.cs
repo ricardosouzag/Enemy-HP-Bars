@@ -1,4 +1,4 @@
-﻿namespace EnemyHPBar;
+namespace EnemyHPBar;
 
 public class EnemyHPBar : Mod, IGlobalSettings<Settings>, ICustomMenuMod {
 	private static readonly Lazy<string> Version = new(() => Assembly
@@ -172,8 +172,7 @@ public class EnemyHPBar : Mod, IGlobalSettings<Settings>, ICustomMenuMod {
 			}
 
 			hm.gameObject.AddComponent<BossHPBar>();
-			ActiveBosses.Add(enemy.name);
-			LogDebug($@"Added HP bar to boss {enemy.name}");
+			LogDebug($@"Added Boss HP bar to {enemy.name}");
 		}
 
 		return false;

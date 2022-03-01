@@ -63,6 +63,10 @@ public class BossHPBar : MonoBehaviour {
 		currHP = hm.hp;
 	}
 
+	public void OnEnable() {
+		EnemyHPBar.ActiveBosses.Add(name);
+	}
+
 	private void SetHPBarAlpha(float alpha) {
 		bg_cr.SetAlpha(alpha);
 		fg_cr.SetAlpha(alpha);
@@ -86,10 +90,10 @@ public class BossHPBar : MonoBehaviour {
 		SetHPBarAlpha(0);
 		DestroyHPBar();
 		Logger.LogDebug($@"Destroyed enemy {gameObject.name}");
-		EnemyHPBar.ActiveBosses.Remove(gameObject.name);
 	}
 
 	private void OnDisable() {
+		EnemyHPBar.ActiveBosses.Remove(name);
 		SetHPBarAlpha(0);
 		Logger.LogDebug($@"Disabled enemy {gameObject.name}");
 	}
