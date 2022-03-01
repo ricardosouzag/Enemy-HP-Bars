@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,7 +13,14 @@ using UObject = UnityEngine.Object;
 
 namespace EnemyHPBar {
 	public class EnemyHPBar : Mod, IGlobalSettings<Settings>, ICustomMenuMod {
-		private const string version = "2.2.0";
+		private static readonly Lazy<string> Version = new(() => Assembly
+			.GetExecutingAssembly()
+			.GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+			.InformationalVersion
+#if DEBUG
+			+ "-dev"
+#endif
+		);
 
 		public static EnemyHPBar instance;
 
