@@ -1,21 +1,19 @@
-﻿using System.IO;
+﻿namespace EnemyHPBar;
 
-using UnityEngine;
+internal sealed class ResourceLoader : MonoBehaviour {
+	private static byte[] GetImage(string name) => File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId(), name));
 
-namespace EnemyHPBar {
-	internal class ResourceLoader : MonoBehaviour {
-		public static byte[] GetBackgroundImage() => File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_BG);
+	public static byte[] GetBackgroundImage() => GetImage(EnemyHPBar.HPBAR_BG);
 
-		public static byte[] GetForegroundImage() => File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_FG);
+	public static byte[] GetForegroundImage() => GetImage(EnemyHPBar.HPBAR_FG);
 
-		public static byte[] GetMiddlegroundImage() => File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_MG);
+	public static byte[] GetMiddlegroundImage() => GetImage(EnemyHPBar.HPBAR_MG);
 
-		public static byte[] GetOutlineImage() => File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_OL);
+	public static byte[] GetOutlineImage() => GetImage(EnemyHPBar.HPBAR_OL);
 
-		public static byte[] GetBossBackgroundImage() => File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_BOSSBG);
+	public static byte[] GetBossBackgroundImage() => GetImage(EnemyHPBar.HPBAR_BOSSBG);
 
-		public static byte[] GetBossForegroundImage() => File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_BOSSFG);
+	public static byte[] GetBossForegroundImage() => GetImage(EnemyHPBar.HPBAR_BOSSFG);
 
-		public static byte[] GetBossOutlineImage() => File.ReadAllBytes(Path.Combine(EnemyHPBar.DATA_DIR, EnemyHPBar.instance.CurrentSkin.GetId()) + "/" + EnemyHPBar.HPBAR_BOSSOL);
-	}
+	public static byte[] GetBossOutlineImage() => GetImage(EnemyHPBar.HPBAR_BOSSOL);
 }
